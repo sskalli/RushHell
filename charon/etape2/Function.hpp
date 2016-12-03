@@ -12,12 +12,13 @@ protected:
   type		_f;
 
 public:
-  Function(T);
   Function(T (*f)(U)) {_f = f;}
   ~Function() {}
 
   Function	operator=(T (*f)(U))
   {
+    if (this)
+      delete _f;
     _f= f;
     return this;
   }
