@@ -18,11 +18,22 @@ public:
   bool		find(std::string const &alphabet) {
     std::vector<State>::iterator	it = _fsa._states.begin();
     
+
     for (int i = 0; alphabet[i]; i++) {
-      if ((*it).getEdge("fdp")(alphabet[i]))
-	std::cout << "c le meme frr" << std::endl;
+
+		std::vector<Edge>	_edges = (*it).getEdge();
+
+		for (std::vector<Edge>::iterator re = _edges.begin(); re != _edges.end(); ++re) {
+
+			if ((*re)(alphabet[i])) {
+				*it = _fsa[(*it).getLinkedStateName(alphabet[i])];
+				if ((*it).getFinal()) {
+					return true;
+				}
+			}
+		}
     }
-    return true;
+    return false;
   }
 };
 

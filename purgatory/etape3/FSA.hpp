@@ -2,6 +2,7 @@
 #define FSA_HPP_
 
 # include <vector>
+# include <iostream>
 
 # include "State.hpp"
 
@@ -13,6 +14,9 @@ public:
   FSA() {}
   ~FSA() {}
 
+  void		addState(State s) {
+	  _states.push_back(s);
+  }
 
   State		&operator[](std::string const &name) {
     for (std::vector<State>::iterator it = _states.begin(); it != _states.end(); ++it) {

@@ -3,6 +3,7 @@
 
 # include <string>
 # include <sstream>
+# include <vector>
 # include <map>
 
 # include "Edge.hpp"
@@ -39,13 +40,36 @@ public:
     i++;
     return state;
   }
+  
+  bool			getFinal() const {
+	  return _final;
+  }
+
+  void			setFinal(bool b) {
+	  _final = b;
+  }
 
   void			setLink(std::string const &s, Edge &e) {
     _link.insert(std::pair<std::string, Edge>(s, e));
   }
 
-  Edge			getEdge(std::string const &s) {   
-    return _link.at(s);
+  std::vector<Edge>			getEdge()
+  {
+	std::vector<Edge>		edges;
+
+	for (std::map<std::string, Edge>::iterator it = _link.begin(); it != _link.end(); ++it) {
+		edges.push_back(it->second);
+	}
+	return edges;
+  }
+
+  std::string				getLinkedStateName(char c) {
+	  for (std::map<std::string, Edge>::iterator it = _link.begin(); it != _link.end(); ++it) {
+		  if (it->second(c)) {
+			  return it->first;
+		  }
+	  }
+	  return "";
   }
 };
 
