@@ -2,9 +2,9 @@
 #include <iostream>
 #include <strings.h>
 
-eState		moveAppend(eState s, std::string &str, char c)
+eState		moveAppend(eState s, std::string &str, char c, int const j)
 {
-  s = static_cast<eState>(static_cast<int>(s) + 1);
+  s = gStateTable[s][j];
   str += c;
   return s;
 }
@@ -38,7 +38,7 @@ void		machine(char *s)
 	  if (s[i] == alph[j])
 	    {
 	      if (gActionTable[status][j] == MA)
-		status = moveAppend(status, token, alph[j]);
+		status = moveAppend(status, token, alph[j], j);
 	      found = true;
 	    }
 	}
