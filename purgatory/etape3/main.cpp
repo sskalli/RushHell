@@ -1,5 +1,5 @@
 #include "State.hpp"
-#include "Edge.hpp"
+#include "Matcher.hpp"
 
 int	main(int, char **)
 {

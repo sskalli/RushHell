@@ -5,13 +5,15 @@
 # include <sstream>
 # include <map>
 
+# include "Edge.hpp"
+
 class	State {
 
 private:
   std::string				_name;
   bool					_final;
 
-  std::map<std::string, std::string>	_link;
+  std::map<std::string, Edge>		_link;
 
 public:
   State(std::string const &s, bool b = false) {
@@ -38,8 +40,8 @@ public:
     return state;
   }
 
-  void			setLink(std::string const &s, std::string const &e) {
-    _link[s] = e;
+  void			setLink(std::string const &s, Edge &e) {
+    _link.insert(std::pair<std::string, Edge>(s, e));
   }
 };
 
