@@ -2,6 +2,7 @@
 # define MATCHER_HPP_
 
 # include "FSA.hpp"
+# include <iostream>
 
 class	Matcher {
 private:
@@ -15,6 +16,12 @@ public:
   }
 
   bool		find(std::string const &alphabet) {
+    std::vector<State>::iterator	it = _fsa._states.begin();
+    
+    for (int i = 0; alphabet[i]; i++) {
+      if ((*it).getEdge("fdp")(alphabet[i]))
+	std::cout << "c le meme frr" << std::endl;
+    }
     return true;
   }
 };

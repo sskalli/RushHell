@@ -43,6 +43,10 @@ public:
   void			setLink(std::string const &s, Edge &e) {
     _link.insert(std::pair<std::string, Edge>(s, e));
   }
+
+  Edge			getEdge(std::string const &s) {   
+    return _link.at(s);
+  }
 };
 
 bool			operator==(State const &s, std::string const &n) {
