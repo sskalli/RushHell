@@ -1,6 +1,11 @@
 project(test_functor_type)
 
-add_executable(
-        FunctionSignature.hpp
-        main.cpp
-)
+set (SRCS
+  main.cpp
+  )
+
+set (HEADERS
+  FunctionSignature.hpp
+  )
+
+add_executable(test_functor_type ${SRCS} ${HEADERS})
