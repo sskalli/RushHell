@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/test_fsa.dir/Machine.cpp.o CMakeFiles/test_fsa.dir/main.cpp.o  -o test_fsa -rdynamic 

@@ -2,23 +2,51 @@
 #include <iostream>
 #include <strings.h>
 
-void	moveAppend()
+eState		moveAppend(eState s, std::string &str, char c)
 {
+  s = static_cast<eState>(static_cast<int>(s) + 1);
+  str += c;
+  return s;
 }
 
-void	haltReset()
+eState		haltReset(eState s, std::string &str)
 {
+  std::cout << str << std::endl;
+  str.clear();
+  s = S0;
+  return s;
 }
 
-void	machine(char *s)
+void		machine(char *s)
 {
-  char	alph[7] = "mechant";
-  char	token[7];
+  std::string	alph = "mechant";
+  std::string	token;
+
+  eState	status = S0;
 
   for (int i = 0; s[i]; i++)
     {
+      bool	found = false;
       
+      for (int j = 0; j < 7; j++)
+	{
+	  if (status == S7)
+	    {
+	      status = haltReset(status, token);
+	      found = true;
+	    }
+	  if (s[i] == alph[j])
+	    {
+	      if (gActionTable[status][j] == MA)
+		status = moveAppend(status, token, alph[j]);
+	      found = true;
+	    }
+	}
+      if (!found)
+	status = haltReset(status, token);
     }
+  if (!token.empty())
+    status = haltReset(status, token);
 }
 
 int	main(int, char **av)

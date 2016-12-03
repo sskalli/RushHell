@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/test_functor_type.dir/Machine.cpp.o CMakeFiles/test_functor_type.dir/main.cpp.o  -o test_functor_type -rdynamic 

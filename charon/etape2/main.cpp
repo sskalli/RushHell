@@ -1,15 +1,22 @@
 #include "Function.hpp"
 #include <iostream>
-#include <boost/bind.hpp>
+#include <string>
+
+void	test1(std::string s)
+{
+  std::cout << s << std::endl;
+}
 
 int	test(char c)
 {
-  std::cout << c << std::endl;
+  return c;
 }
 
 int	main(int, char **)
 {
-  Function<int (char)>	f = boost::bind(&test, _1);
+  Function<int (char)>	f = &test;
+  Function<void (std::string)> t = &test1;
 
-  f('d');
+  std::cout << f('d') << std::endl;
+  t("IL EST MALAAAAADE");
 }
